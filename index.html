@@ -203,6 +203,7 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 
 #p-voice-how > .flow.in-how { margin-top: 1.5rem; }
 #p-fs figure.fs-in { width: 80%; margin: 2rem 0 0; } #p-fs figure.fs-in img { aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(40, 30, 20, 0.22); } #p-fs figure.fs-l img { rotate: -1.5deg; } #p-fs figure.fs-l { justify-self: center; margin-inline: auto; } #p-fs figure.fs-r img { rotate: 1.5deg; } #p-fs figure.fs-in figcaption { margin-top: 0.6rem; }
+.logos li.lbr { flex-basis: 100%; height: 0 !important; margin: 0 0 -0.5rem; padding: 0; }
 </style>
 <style>
 #hunt-note .how { padding: 12% 9.5%; align-items: stretch; justify-content: center; gap: 0; }
@@ -265,7 +266,12 @@ h1 span.hl-sweep.hl-on hl-l { background-size: 100% 100%; color: var(--hl-ink); 
 .hunt-panel .dare:focus-visible, .hunt-chip:focus-visible { outline: 2px solid #24221d; outline-offset: 3px; }
 .hunt-panel .end b { font-weight: 700; }
 .hunt-stamp { position: absolute; z-index: 3; pointer-events: none; background: var(--sticky); color: #24221d; font: 700 1.05rem/1 "Caveat", "Bradley Hand", "Segoe Print", cursive; padding: 0.3rem 0.5rem 0.35rem; border-radius: 2px; transform: rotate(-4deg); box-shadow: 0 3px 8px rgba(30,25,15,0.25); white-space: nowrap; }
-.hunt-stamp.pop { animation: hunt-pop .6s cubic-bezier(.3,1.7,.5,1) both; }
+.hunt-stamp.pop { animation: hunt-pop .6s cubic-bezier(.3,1.7,.5,1) both; transform-origin: 0.6rem 0.6rem; }
+.hunt-dot { position: absolute; z-index: 3; width: 1.25rem; height: 1.25rem; margin: 0.2rem 0 0 0.2rem; padding: 0; border: 0; border-radius: 50%; background: var(--sticky); box-shadow: 0 0 0 2px rgba(255,255,255,0.55), 0 2px 6px rgba(30,25,15,0.35); cursor: pointer; transition: transform .25s ease, opacity .25s ease; }
+.hunt-dot::before { content: ""; position: absolute; inset: -0.6rem; border-radius: 50%; }
+.hunt-dot:hover, .hunt-dot:focus-visible { transform: scale(1.2); }
+.hunt-dot:focus-visible { outline: 2px solid var(--hl); outline-offset: 2px; }
+.hunt-dot.gone { transform: scale(0); opacity: 0; pointer-events: none; }
 @keyframes hunt-pop { 0% { transform: rotate(-20deg) scale(0); opacity: 0; } 60% { transform: rotate(2deg) scale(1.2); opacity: 1; } 100% { transform: rotate(-4deg) scale(1); } }
 .bar a.hint { box-shadow: 0 0 0 2px var(--sticky), 0 0 14px 2px color-mix(in srgb, var(--sticky) 70%, transparent); border-radius: 4px; animation: hunt-glow 2.4s ease-in-out infinite; }
 @keyframes hunt-glow { 50% { box-shadow: 0 0 0 2px var(--sticky), 0 0 4px 0 color-mix(in srgb, var(--sticky) 40%, transparent); } }
@@ -276,9 +282,9 @@ h1 span.hl-sweep.hl-on hl-l { background-size: 100% 100%; color: var(--hl-ink); 
 .bar-in.fl { --fl: 2.5rem; } .bar-in.fr { --fr: 2.5rem; }</style>
 <style>.pin-run { position: relative; }
 .wrap > .pin-run { order: 1; }
-.pin-on .pin-run > header { opacity: var(--q0, 1); will-change: opacity; }
+.pin-on .pin-run > header { opacity: var(--q0, 1); will-change: opacity; z-index: 5; box-shadow: 0 -100vh 0 100vh color-mix(in srgb, var(--paper) calc(var(--cv, 0) * 100%), transparent); }
 .pin-run header > :not(.intro), .pin-run header .intro > :not(#hunt-note) { translate: none !important; }
-.pin-on #hunt-note { opacity: var(--q, 1); translate: 0 calc((1 - var(--q, 1)) * 0.75rem); }
+.pin-on #hunt-note { opacity: var(--q, 1); translate: 0 calc((1 - var(--q, 1)) * 0.75rem); transition: opacity .7s ease, translate .7s cubic-bezier(.2,.7,.2,1); }
 @media (prefers-reduced-motion: reduce) { .pin-on #hunt-note { translate: none; } }</style><style>
 .specimen { min-height: calc(100svh - 4.5rem); align-content: center; }
 .specimen > .media img:not(.inset img), .specimen > .media video { max-height: 62svh; object-fit: contain; }
@@ -602,7 +608,7 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
 <div class="tablet vid"><video aria-label="The Restore with Resilience story from Malama Maunalua and HIMB: dragging a slider grows a coral fragment month by month as its surface area, volume, and growth factor climb, then a chart of heat-tolerant coral, then Plant a Coral. Protect a Reef." autoplay="" height="748" loop="" muted="" playsinline="" poster="img/ttt-coral.jpg" preload="metadata" src="img/ttt-coral.mp4" width="1000"></video></div>
 <figcaption><b>On the iPads:</b> drag the slider and a heat-tolerant coral fragment from HIMB's Restore with Resilience project grows month by month</figcaption>
 </figure><figure>
-<div class="tablet vid"><video aria-label="The iPad story for Blue Whales Blue Skies: 80 whales struck and killed by ships off the West Coast each year, a video of the ocean, the shipping lines ranked by cooperation, and the result: when ships slow down, whales survive, with fleet cooperation and ship-strike risk figures counting up" autoplay="" height="794" loop="" muted="" playsinline="" poster="img/ttt-ipad.jpg" preload="metadata" src="img/ttt-ipad.mp4?v=3" width="1000"></video></div>
+<div class="tablet vid"><video aria-label="The iPad story for Blue Whales Blue Skies: The Sound of a Shipping Lane plays a hydrophone recording of humpback song as a spectrogram, then the shipping lines ranked by cooperation, and the result: when ships slow down, whales survive, with fleet cooperation and ship-strike risk figures counting up" autoplay="" height="794" loop="" muted="" playsinline="" poster="img/ttt-ipad.jpg?v=4" preload="metadata" src="img/ttt-ipad.mp4?v=4" width="1000"></video></div>
 <figcaption><b>Blue Whales Blue Skies:</b> the story from ship strikes to the shipping lines that slow down for whales</figcaption>
 </figure><div class="stages fillable"><div class="thumbs">
 <figure>
@@ -679,11 +685,11 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
 <div class="thumbs">
 <figure>
 <img alt="Map zoomed to Northern California with a pin open near Sacramento: a glowing orange burn pattern, timestamped 5/6/2026, Rancho Cordova, with a 29-second voice note" height="906" loading="lazy" src="img/fn-pin.jpg" width="1400"/>
-<figcaption><b>His pin:</b> a 29-second voice note from the CTO of <a href="https://www.elventech.net/" rel="noopener" target="_blank">Elven Tech</a> · The company’s CEO usually pitches, so Field Notes gave its lead engineer a turn to tell the story</figcaption>
+<figcaption><b>His pin:</b> a 29-second voice note from the CTO of <a href="https://www.elventech.net/" rel="noopener" target="_blank">Elven Tech</a>, who was at the conference to pitch</figcaption>
 </figure>
 <figure>
 <div class="tear t4"><blockquote class="fn-quote"><span class="fn-q-label">Field entry · Rancho Cordova, CA</span><p>“I was at the test center, doing this experiment of burning one of the materials with a torch, and this is the pattern that was seen on the material while burning, and the way I felt was like <em>a hunter in the middle of the winter, looking into the fire in the middle of the night.</em>”</p></blockquote></div>
-<figcaption><b>The winning voice note:</b> Elven Tech went on to take first place at the conference, and its CTO got to tell the story in his own voice… I’m not saying we had nothing to do with it ;)</figcaption>
+<figcaption><b>The winning voice note:</b> Elven Tech went on to take first place… I’m not saying we had nothing to do with it ;)</figcaption>
 </figure>
 </div>
 </div></div><div class="more"><div class="tbar"><button aria-controls="p-notes-how" aria-expanded="false" class="tg" type="button">How it was made</button><button aria-controls="p-notes-next" aria-expanded="false" class="tg" type="button">What's next</button></div><div class="more-in" hidden="" id="p-notes-how"><div class="tl h"><span class="label">Process</span><ol><li class="m"><span class="whos"><b class="who me">Me</b></span><p>Came up with it for the NorCal Venture Conference</p></li><li class="a"><span class="whos"><b class="who ai">AI</b></span><p>Built the app in Lovable (built on Claude)</p></li><li class="m"><span class="whos"><b class="who me">Me</b></span><p>Ran it live at the conference in May 2026</p></li><li class="o"><span class="whos"><b class="who">Attendees</b></span><p>Sent in every photo and voice note</p></li><li class="m"><span class="whos"><b class="who me">Me</b></span><p>Coached people who got stuck on what to say; voice was still the easiest way in</p></li><li class="a"><span class="whos"><b class="who ai">AI</b></span><p>OpenAI’s Whisper transcribed each voice note as it came in</p></li><li class="m"><span class="whos"><b class="who me">Me</b></span><p>Told the winner’s story in his own photo and voice, and showed the map during my pitch</p></li></ol></div><div class="stages">
@@ -725,7 +731,7 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
 <p>Visible Brilliance is my studio's path for women in STEM who do brilliant work that few people see. It starts with a short video and a quiz that matches you to a hand-illustrated archetype, and more than 200 people have taken it. Its leads cost half what they did in our 2025 ad test. Next comes Recess, a 14-day challenge that mixes journal prompts with short social and communication exercises. It includes two AI tools: as a bonus, the LinkedIn audience tool I built for my strategy clients shows who your organization reaches now, and a counterweight version of AffirmMagic (<a href="#p-voice">see below</a>) closes the challenge.</p>
 <p>Field Season, the eight-week program, turns all of it into live creative games, one a week, each judged by a guest expert. I developed the games' mechanics and materials with AI. Two of them are shown here. In the first, each scientist builds her superhero: a card with a hero name, archetype, signature move, nemesis, and a battle cry she can say out loud. In the Elevator Drop, she pitches as that hero in an elevator we built in Zoom's Immersive View, riding with the judge, an angel investor who plays the person she most needs to win over. Every floor, her pitch has to shrink: 60 seconds, then 30, then 15, then 7. When the doors open on the lobby, the judge walks her through what landed, and she walks out with a seven-second version of her work.</p>
 <dl class="credits"><dt>Audience</dt><dd>200+ quiz takers online who identified with “smart women who feel invisible,” mostly women in science, policy, and tech, then pilot cohorts of Recess and Field Season</dd></dl>
-<div class="next"><p><b class="mdl">What the model does</b>Game design partner: it shapes each game, makes the game assets, and helps facilitate play. At scale, it could keep a coaching program personal by pairing buddies on background and goals and pulling common threads from submissions for group coaching</p></div>
+<div class="next"><p><b class="mdl">What the model does</b>Game design partner: it shapes each game, makes the game assets, and helps facilitate play; at scale, it could keep a coaching program personal by pairing buddies on background and goals and pulling common threads from submissions for group coaching</p></div>
 </div>
 <div class="m2 stages"><div class="thumbs fsrow">
 <figure>
@@ -806,7 +812,7 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
 <div class="award"><i aria-hidden="true" class="laurel"></i><div><b>CAMD Graduate Award</b><span>Creative and Research Projects, Northeastern University</span></div></div>
 <p>Aging, bacteria, gravity, solar storms, and in 2021, Covid-19. So much of what shapes our lives is too small, too big, or too abstract to see. For my master’s capstone in Northeastern’s Media Innovation program, I made a proof-of-concept science magazine that comes alive when you hold a phone over the pages. It shows how the immune system responds to Covid-19 and how vaccines help, and I wanted it to feel like something you’d pick up after a long day out of curiosity, not obligation.</p><p>Each spread pairs a page of plain text with an interactive image, so readers never juggle too much that’s new at once. Through the phone, the illustration turns into a kind of X-ray window, and buttons and toggles let readers set the pace, from immune cells pouring out of the bone marrow to a virus replicating inside a cell. I kept the tone fantastical, to leave people in awe of what’s happening inside their own bodies, and the vaccine pages neutral and respectful, with accurate, concise information so readers could decide for themselves.</p>
 <dl class="credits"><dt>Audience</dt><dd>50 to 60 students and faculty at the Media Studio final presentations, which are open to all of CAMD, and the award jury</dd></dl>
-<div class="next"><p><b class="mdl">What the model does</b>Nothing yet: I made Antibody in 2021, before frontier models, so the next step is where one comes in</p></div>
+<div class="next"></div>
 <figure class="unity-fig"><img alt="The Project Antibody scene in Unity: eight magazine spreads laid out as image targets, each with its 3D content above the page, from a muscled torso over a pixel-art city to a petri dish virus, an antibody protein, and a syringe over a vaccine vial" height="528" loading="lazy" src="img/antibody-unity.jpg" width="1200"/><figcaption><b>In Unity:</b> each spread is an image target, with its 3D models and buttons waiting above the page</figcaption></figure>
 </div>
 <div class="m2 stages"><div class="thumbs">
@@ -990,6 +996,28 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
 })();
 </script>
 <script>
+(() => {
+  const fix = () => document.querySelectorAll('.logos ul').forEach(ul => {
+    ul.querySelectorAll(':scope > li.lbr').forEach(b => b.remove());
+    const lis = [...ul.children];
+    if (lis.length < 3) return;
+    const rows = () => { const out = []; lis.forEach(li => { const c = li.offsetTop + li.offsetHeight / 2; const r = out.find(x => Math.abs(x.c - c) < 12 || (li.offsetTop < x.b && li.offsetTop + li.offsetHeight > x.t)); if (r) { r.items.push(li); r.t = Math.min(r.t, li.offsetTop); r.b = Math.max(r.b, li.offsetTop + li.offsetHeight); } else out.push({ c, t: li.offsetTop, b: li.offsetTop + li.offsetHeight, items: [li] }); }); return out.sort((a, b) => a.t - b.t); };
+    for (let k = 0; k < 4; k++) {
+      const r = rows();
+      if (r.length < 2) return;
+      const i = r.map(x => x.items.length).lastIndexOf(1);
+      if (i < 1) return;
+      const prev = r[i - 1].items;
+      if (prev.length < 3) return;
+      const b = document.createElement('li'); b.className = 'lbr'; b.setAttribute('aria-hidden', 'true');
+      ul.insertBefore(b, prev[prev.length - 1]);
+    }
+  });
+  let t; const q = () => { clearTimeout(t); t = setTimeout(fix, 60); };
+  addEventListener('resize', q); addEventListener('load', q); if (document.fonts) document.fonts.ready.then(q); fix();
+})();
+</script>
+<script>
 document.querySelectorAll('.more .tg').forEach(b => b.addEventListener('click', () => {
   const box = b.closest('.more'), open = b.getAttribute('aria-expanded') === 'true';
   box.querySelectorAll('.tg').forEach(o => { o.setAttribute('aria-expanded', 'false'); document.getElementById(o.getAttribute('aria-controls')).hidden = true; });
@@ -1090,7 +1118,9 @@ document.querySelectorAll('.more .tg').forEach(b => b.addEventListener('click', 
     stamp.style.top = (y + 10) + 'px';
   };
   const stamps = [];
-  addEventListener('resize', () => stamps.forEach(([st, el]) => place(st, el)));
+  const hdots = [];
+  const WIN = { 'seeker-swim': [[17.8, 20.3], [26.8, 31]], 'seeker-ctrl': [[3.8, 9.5]] };
+  addEventListener('resize', () => { stamps.forEach(([st, el]) => place(st, el)); hdots.forEach(([d, el]) => { if (d.isConnected) place(d, el); }); });
   const find = (el, k, name, n) => {
     got[k]++;
     count++;
@@ -1098,6 +1128,7 @@ document.querySelectorAll('.more .tg').forEach(b => b.addEventListener('click', 
     const host = a.closest('.mosaic .ripw') || a.parentElement;
     if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
     if (a.offsetParent !== host) host.style.position = 'relative';
+    if (el._dot) { const d = el._dot; d.classList.add('gone'); setTimeout(() => d.remove(), 300); }
     const st = document.createElement('span');
     st.className = 'hunt-stamp' + (still ? '' : ' pop');
     st.setAttribute('aria-hidden', 'true');
@@ -1143,20 +1174,24 @@ document.querySelectorAll('.more .tg').forEach(b => b.addEventListener('click', 
       io.unobserve(el);
       el._seen = true;
       check();
-    }, 800);
+    }, 1600);
   }), { threshold: 0.6 });
-  let ticking = false;
+  let ticking = false, nextAt = 0;
   const check = () => {
     ticking = false;
     const end = innerHeight + scrollY >= document.documentElement.scrollHeight - 4;
     document.querySelectorAll('[src]').forEach(el => {
       if (!el._seen || el._got || el._pending) return;
+      const w = WIN[el._base];
+      if (w && el.tagName === 'VIDEO' && !el.paused && !w.some(([a, b]) => el.currentTime >= a && el.currentTime <= b)) return;
       const r = el.getBoundingClientRect();
       const ar = (el._anchor || el).getBoundingClientRect();
       if (ar.top < innerHeight * 0.55 || r.top + r.height / 2 < innerHeight * 0.6 || end) {
         el._pending = true;
         const [k, name, n] = el._hunt;
-        find(el, k, name, n);
+        const now = performance.now(), wait = Math.max(0, nextAt - now);
+        nextAt = now + wait + 450;
+        if (wait) setTimeout(() => find(el, k, name, n), wait); else find(el, k, name, n);
       }
     });
   };
@@ -1173,6 +1208,14 @@ document.querySelectorAll('.more .tg').forEach(b => b.addEventListener('click', 
     el._idx = keys.indexOf(key);
     el._right = side === 'r';
     if (anchor) el._anchor = document.querySelector('[src*="img/' + anchor + '."]');
+    const a = el._anchor || el;
+    const host = a.closest('.mosaic .ripw') || a.parentElement;
+    if (getComputedStyle(host).position === 'static' || a.offsetParent !== host) host.style.position = 'relative';
+    const d = document.createElement('button');
+    d.type = 'button'; d.className = 'hunt-dot'; d.setAttribute('aria-label', 'Scavenger hunt find: tap to reveal');
+    host.appendChild(d); el._dot = d; hdots.push([d, el]); place(d, el);
+    d.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); if (el._got || el._pending) return; io.unobserve(el); el._seen = true; el._pending = true; const w = WIN[base]; if (w && el.tagName === 'VIDEO') { try { el.currentTime = w[0][0] + 0.4; el.play().catch(() => {}); } catch (x) {} } find(el, k, name, keys.length); });
+    if (WIN[base] && el.tagName === 'VIDEO') el.addEventListener('timeupdate', () => { if (el._seen && !el._got && !el._pending) check(); });
     io.observe(el);
   }));
   const left = () => {
@@ -1222,15 +1265,20 @@ b.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);u();s
 <script>
 (function(){var note=document.getElementById('hunt-note');if(!note)return;var hdr=note.closest('header');if(!hdr)return;
 var run=document.createElement('div');run.className='pin-run';hdr.parentNode.insertBefore(run,hdr);run.appendChild(hdr);var sp=document.createElement('div');sp.setAttribute('aria-hidden','true');run.appendChild(sp);
+var tt=document.getElementById('p-ttt');
 var top=0,len=0,waved=false,q0m=0,qm=0,pinned=true;
 function layout(){var h=hdr.offsetHeight,vh=innerHeight;pinned=h<vh-80;top=Math.max(60,(vh-h)/2);len=pinned?Math.round(vh*0.8):0;
-hdr.style.position=pinned?'sticky':'';hdr.style.top=pinned?top+'px':'';sp.style.height=len+'px';tick();}
+hdr.style.position=pinned?'sticky':'';hdr.style.top=pinned?top+'px':'';sp.style.height=len+'px';var g=parseFloat(getComputedStyle(run.parentElement).rowGap)||0;run.style.marginBottom=pinned?Math.max(0,Math.round(vh-top-h-g))+'px':'';tick();}
 function tick(){var p=(top-run.getBoundingClientRect().top)/len;p=Math.max(0,Math.min(1,p));
 var e=function(x){x=Math.max(0,Math.min(1,x));return x*x*(3-2*x)};
-var r=run.getBoundingClientRect();q0m=Math.max(q0m,e((innerHeight-r.top)/(innerHeight*0.45)));hdr.style.setProperty('--q0',q0m.toFixed(3));
-qm=Math.max(qm,pinned?e((p-0.1)/0.45):e((innerHeight-note.getBoundingClientRect().top)/(innerHeight*0.45)));note.style.setProperty('--q',qm.toFixed(3));if(qm>0.98&&!waved){waved=true;var rw=note.querySelector('.hunt-row');if(rw)setTimeout(function(){rw.classList.add('wave')},600);}}
+var r=run.getBoundingClientRect();hdr.style.setProperty('--cv',pinned?e((top+160-r.top)/160).toFixed(3):'0');q0m=Math.max(q0m,e((innerHeight-r.top)/(innerHeight*0.45)));hdr.style.setProperty('--q0',q0m.toFixed(3));
+if(qm<1&&(pinned?p>0.08:note.getBoundingClientRect().top<innerHeight*0.8))qm=1;note.style.setProperty('--q',qm.toFixed(3));if(qm>0.98&&!waved){waved=true;var rw=note.querySelector('.hunt-row');if(rw)setTimeout(function(){rw.classList.add('wave')},600);}}
 document.documentElement.classList.add('pin-on');
-addEventListener('scroll',function(){requestAnimationFrame(tick)},{passive:true});addEventListener('resize',layout);layout();
+var lastY=scrollY,dir=0,st=0,gliding=false;
+function glide(){if(!pinned||gliding||matchMedia('(prefers-reduced-motion: reduce)').matches)return;var y=scrollY,base=run.getBoundingClientRect().top+y,a=base-top,rel=a+len,tY=tt?tt.getBoundingClientRect().top+y-(parseFloat(getComputedStyle(tt).scrollMarginTop)||0):0;
+var to=null;if(dir>0&&y>a-innerHeight*0.45&&y<a-4)to=a;
+if(to!==null){gliding=true;scrollTo({top:to,behavior:'smooth'});setTimeout(function(){gliding=false;lastY=scrollY},900);}}
+addEventListener('scroll',function(){requestAnimationFrame(tick);var y=scrollY;if(!gliding&&Math.abs(y-lastY)>1)dir=y>lastY?1:-1;lastY=y;clearTimeout(st);st=setTimeout(glide,160);},{passive:true});addEventListener('resize',layout);layout();
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layout);setTimeout(layout,800);})();
 </script>
 <script>
