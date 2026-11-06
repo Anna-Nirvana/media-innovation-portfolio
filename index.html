@@ -202,6 +202,7 @@ h1, h2, h3 { letter-spacing: -0.01em; }
 #p-ttt .logos li img, #p-ttt .logos ul:last-of-type li img { max-width: min(100%, 10rem); } .logos li img, .media > .logos li img, #p-ttt .logos li img, #p-ttt .logos ul:last-of-type li img { flex: none; height: var(--lh, 100%) !important; max-height: none !important; width: auto !important; max-width: none !important; } .logos li { max-width: 100%; } @media (max-width: 760px) { .logos li span { text-align: left; } }
 
 #p-voice-how > .flow.in-how { margin-top: 1.5rem; }
+#p-fs figure.fs-in { width: 80%; margin: 2rem 0 0; } #p-fs figure.fs-in img { aspect-ratio: auto; height: auto; box-shadow: 0 4px 12px rgba(40, 30, 20, 0.22); } #p-fs figure.fs-l img { rotate: -1.5deg; } #p-fs figure.fs-l { justify-self: center; margin-inline: auto; } #p-fs figure.fs-r img { rotate: 1.5deg; } #p-fs figure.fs-in figcaption { margin-top: 0.6rem; }
 </style>
 <style>
 #hunt-note .how { padding: 12% 9.5%; align-items: stretch; justify-content: center; gap: 0; }
@@ -700,7 +701,7 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
 <li><img alt="Recording in progress with a red stop button and a timer at 00:18" height="929" src="img/fn-07.jpg" width="460"/><span>Recording (30 sec max)</span></li>
 <li><img alt="Field entry card numbered 84102 with the photo, subject Work you're proud of, location Redding, and voice memo logged, then Got it. Thank you." height="929" src="img/fn-08.jpg" width="460"/><span>Logged as a field entry</span></li>
 </ol>
-</div></div><div class="nextp" hidden="" id="p-notes-next"><p>The possibilities are endless. Team bonding with prompts written for each group, but also stories that unfold as people interact with each other through their phones, the way <a href="https://smartphoneorchestra.com" rel="noopener" target="_blank">Smartphone Orchestra</a>'s work does, set in real landscapes and paired with citizen science.</p></div></div></section><section aria-labelledby="fs" class="alt specimen" id="p-fs" style="--c: var(--c-fs)">
+</div></div><div class="nextp" hidden="" id="p-notes-next"><p>The possibilities are endless. Team bonding with prompts written for each group, but also stories that unfold as people interact with each other through their phones, the way <a href="https://smartphoneorchestra.com" rel="noopener" target="_blank">Smartphone Orchestra</a>'s work does, set in real landscapes and paired with citizen science.</p></div></div></section><section aria-labelledby="fs" class="alt specimen" data-nopair="" id="p-fs" style="--c: var(--c-fs)">
 <div class="media">
 <div class="stages">
 <figure class="vbrow">
@@ -889,6 +890,8 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
       if (!sec._tn) { const g = sec.querySelector(':scope > .m2 > .tonotes'); if (g) sec._tn = [g, g.parentElement]; }
       if (sec._tn) { sec._tn[1].append(sec._tn[0]); sec._tn[0].classList.remove('in-notes'); sec._tn[1].hidden = false; }
       if (sec._fill) { sec._fill[1].append(sec._fill[0]); sec._fill[0].classList.remove('in-media'); sec.classList.remove('filled'); }
+      if (sec.hasAttribute('data-nopair') && !sec._fs) { const r = sec.querySelector(':scope > .m2 > .fsrow'); if (r && r.children.length === 2) sec._fs = [r.children[0], r.children[1], r, r.parentElement]; }
+      if (sec._fs) { sec._fs[2].append(sec._fs[0], sec._fs[1]); sec._fs[0].classList.remove('fs-in', 'fs-l'); sec._fs[1].classList.remove('fs-in', 'fs-r'); sec._fs[3].hidden = false; }
       if (getComputedStyle(sec).gridTemplateColumns.trim().split(/\s+/).length < 2) return;
       const items = sec._mv;
       const put = list => { sec._anchor.after(...sec._orig); sec._orig.forEach(k => k.classList.remove('in-media')); list.forEach(k => { m.append(k); k.classList.add('in-media'); }); };
@@ -920,7 +923,8 @@ footer .sps-more { font-size: 0.875rem; color: var(--muted); }
         if (Math.abs(m.offsetHeight - t.offsetHeight) > d0 - 40) { sec._tn[1].append(g); g.classList.remove('in-notes'); }
         else sec._tn[1].hidden = !sec._tn[1].children.length;
       }
-      if (ci > -1 && ni > -1 && best.includes(items[ci]) !== best.includes(items[ni])) {
+      if (sec._fs) { t.append(sec._fs[0]); m.append(sec._fs[1]); sec._fs[0].classList.add('fs-in', 'fs-l'); sec._fs[1].classList.add('fs-in', 'fs-r'); sec._fs[3].hidden = true; }
+      if (!sec.hasAttribute('data-nopair') && ci > -1 && ni > -1 && best.includes(items[ci]) !== best.includes(items[ni])) {
         const a = items[ci], b = items[ni];
         const at = el => { let y = 0; while (el) { y += el.offsetTop; el = el.offsetParent; } return y; }; const d = at(a) - at(b);
         if (Math.abs(d) > 1 && Math.abs(d) < 160) { const lo = d > 0 ? b : a; lo.style.marginTop = (parseFloat(getComputedStyle(lo).marginTop) + Math.abs(d)) + 'px'; }
